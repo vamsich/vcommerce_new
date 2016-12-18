@@ -1,0 +1,81 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<bean id="cartService" class="com.commercecore.service.impl.DefaultCartService">
+		<property name="cartDao" ref="cartDao"/>
+	</bean>
+	<bean id="catalogService" class="com.commercecore.service.impl.DefaultCatalogService">
+		<property name="catelogDao" ref="catelogDao"/>
+	</bean>
+	<bean id="categoryService" class="com.commercecore.service.impl.DefaultCategoryService">
+		<property name="categoryDao" ref="categoryDao"/>
+	</bean>
+	<bean id="modelService" class="com.commercecore.service.impl.DefaultModelService">
+	</bean>
+	<bean id="priceRowService" class="com.commercecore.service.impl.DefaultPriceRowService">
+		<property name="priceRowDao" ref="priceRowDao"/>
+	</bean>
+	<bean id="productService" class="com.commercecore.service.impl.DefaultProductService">
+		<property name="productDao" ref="productDao"/>
+	</bean>
+	<bean id="customerService" class="com.commercecore.service.impl.DefaultCustomerService">
+		<property name="customerDao" ref="customerDao"/>
+	</bean>
+	<bean id="baseStoreService" class="com.commercecore.service.impl.DefaultBaseStoreService">
+		<property name="baseStoreDao" ref="baseStoreDao"/>
+	</bean>
+	
+	
+	<bean id="addressDao" class="com.commercecore.dao.impl.DefaultAddressDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="baseSiteDao" class="com.commercecore.dao.impl.DefaultBaseSiteDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="baseStoreDao" class="com.commercecore.dao.impl.DefaultBaseStoreDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="cartDao" class="com.commercecore.dao.impl.DefaultCartDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="catelogDao" class="com.commercecore.dao.impl.DefaultCatalogDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="countryDao" class="com.commercecore.dao.impl.DefaultCountryDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="currencyDao" class="com.commercecore.dao.impl.DefaultCurrencyDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="customerDao" class="com.commercecore.dao.impl.DefaultCustomerDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="inventoryDao" class="com.commercecore.dao.impl.DefaultInventoryDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="languageDao" class="com.commercecore.dao.impl.DefaultLanguageDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="orderDao" class="com.commercecore.dao.impl.DefaultOrderDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="priceRowDao" class="com.commercecore.dao.impl.DefaultPriceRowDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="productDao" class="com.commercecore.dao.impl.DefaultProductDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="taxRowDao" class="com.commercecore.dao.impl.DefaultTaxRowDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	<bean id="categoryDao" class="com.commercecore.dao.impl.DefaultCategoryDao">
+		<property name="session" ref="sessionFactory"/>
+	</bean>
+	
+</beans>

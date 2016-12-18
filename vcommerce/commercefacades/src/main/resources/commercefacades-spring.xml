@@ -1,0 +1,95 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<bean id="cartFacade" class="com.commercefacades.facades.impl.DefaultCartFacade">
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	<bean id="productFacade" class="com.commercefacades.facades.impl.DefaultProductFacade">
+		<property name="productService" ref="productService"/>
+	</bean>
+	<bean id="customerFacade" class="com.commercefacades.facades.impl.DefaultCustomerFacade">
+		<property name="customerService" ref="customerService"/>
+		<property name="converter" ref="customerConverter"/>
+	</bean>
+	
+	<bean id="baseStoreFacade" class="com.commercefacades.facades.impl.DefaultBaseStoreFacade">
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="baseStoreConverter" ref="baseStoreConverter"/>
+	</bean>
+	
+	<bean id="contentPageFacade" class="com.commercefacades.facades.impl.DefaultContentPageFacade">
+		<property name="contentPageService" ref="contentPageService"/>
+		<property name="contentPageConverter" ref="contentPageConverter"/>
+	</bean>
+	
+	<bean id="contentSlotFacade" class="com.commercefacades.facades.impl.DefaultContentSlotFacade">
+		<property name="contentSlotService" ref="contentSlotService"/>
+		<property name="contentSlotConverter" ref="contentSlotConverter"/>
+	</bean>
+	
+	<bean id="pageTemplateFacade" class="com.commercefacades.facades.impl.DefaultPageTemplateFacade">
+		<property name="pageTemplateService" ref="pageTemplateService"/>
+		<property name="pageTemplateConverter" ref="pageTemplateConverter"/>
+	</bean>
+	
+	<bean id="abstractConverter" class="com.commercefacades.converters.Converters"/>
+	
+	<bean id="customerConverter" parent="abstractConverter">
+		<property name="target" value="com.commercefacades.data.CustomerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="customerPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="baseStoreConverter" parent="abstractConverter">
+		<property name="target" value="com.commercefacades.data.BaseStoreData"/>
+		<property name="populators">
+			<list>
+				<ref bean="baseStorePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="contentPageConverter" parent="abstractConverter">
+		<property name="target" value="com.commercefacades.data.ContentPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="contentPagePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="contentSlotConverter" parent="abstractConverter">
+		<property name="target" value="com.commercefacades.data.ContentSlotData"/>
+		<property name="populators">
+			<list>
+				<ref bean="contentSlotPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="pageTemplateConverter" parent="abstractConverter">
+		<property name="target" value="com.commercebase.content.data.PageTemplateData"/>
+		<property name="populators">
+			<list>
+				<ref bean="pageTemplatePopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customerPopulator" class="com.commercefacades.converters.impl.CustomerPopulator"/>
+	<bean id="baseStorePopulator" class="com.commercefacades.converters.impl.BaseStorePopulator"/>
+	<bean id="contentPagePopulator" class="com.commercefacades.converters.impl.ContentPagePopulator"/>
+	<bean id="contentSlotPopulator" class="com.commercefacades.converters.impl.ContentSlotPopulator"/>
+	<bean id="pageTemplatePopulator" class="com.commercefacades.converters.impl.ContentSlotPopulator"/>
+	
+	<import resource="classpath*:/commercecore-spring.xml" />
+</beans>
