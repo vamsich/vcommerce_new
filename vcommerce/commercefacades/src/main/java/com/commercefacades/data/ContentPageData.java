@@ -5,6 +5,8 @@ public class ContentPageData
 	private String name;
 	private String code;
 	private String pageName;
+	private String label;
+	
 	public String getName() {
 		return name;
 	}
@@ -24,4 +26,14 @@ public class ContentPageData
 		this.pageName = pageName;
 	}
 	
+	public void setLabel(String label)
+	{
+		this.label= label;
+	}
+	
+	public String getLabel()
+	{
+		return this.label;
+	}
 }
+
