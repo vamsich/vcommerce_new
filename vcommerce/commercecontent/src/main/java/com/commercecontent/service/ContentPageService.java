@@ -11,4 +11,5 @@ public interface ContentPageService
 	void deleteMOdel(ContentPageModel model);
 	void updateModel(ContentPageModel model);
 	List<ContentPageModel> getModels();
+	ContentPageModel getContentPage(String code);
 }
