@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -45,6 +46,10 @@ public class ContentPageModel
 	@JoinTable(name="page_slots", joinColumns={@JoinColumn(name = "page_id")}, inverseJoinColumns = {
 	        @JoinColumn(name = "slotid")})
 	private Set<SlotModel> slots;
+	
+	@OneToOne
+	@JoinColumn(name="pageTemplate")
+	private PageTemplateModel pageTemplate;
 	
 	public Set<SlotModel> getSlots() {
 		return slots;
@@ -101,4 +106,11 @@ public class ContentPageModel
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
 	}
+	public PageTemplateModel getPageTemplate() {
+		return pageTemplate;
+	}
+	public void setPageTemplate(PageTemplateModel pageTemplate) {
+		this.pageTemplate = pageTemplate;
+	}
+	
 }
