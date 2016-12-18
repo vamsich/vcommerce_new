@@ -19,5 +19,5 @@ public class CategoryModel
 	
 	@Column
 	private String name;
-		
+	
 }
