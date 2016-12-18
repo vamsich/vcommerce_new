@@ -1,0 +1,10 @@
+package com.promotionmanager
+
+import com.promotionmanager.order.promotions.OrderLevelPromotion
+
+rule "orderthreshold"
+when
+$account : OrderLevelPromotion(totalAmount>1000)
+then
+System.out.println("promotion applied");
+end
