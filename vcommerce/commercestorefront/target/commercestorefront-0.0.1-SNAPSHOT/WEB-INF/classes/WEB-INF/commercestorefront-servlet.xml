@@ -18,7 +18,7 @@
 	
 	<!-- Resource mapping like js,css,images files -->
 	<!-- it will map the resource files js css images etc with the following root structure -->
-	<mvc:resources mapping="/resources/**" location="resources/wedevelop/" />
+	<mvc:resources mapping="/static/**" location="resources/scripts/" />
 	
 	
 	<!-- To set view pages location with prefix and suffix -->

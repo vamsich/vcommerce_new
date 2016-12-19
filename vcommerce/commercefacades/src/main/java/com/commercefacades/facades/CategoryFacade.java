@@ -2,7 +2,8 @@ package com.commercefacades.facades;
 
 import java.util.List;
 
-import com.commercebase.core.data.CategoryData;
+import com.commercebase.content.data.CategoryData;
+
 
 public interface CategoryFacade 
 {

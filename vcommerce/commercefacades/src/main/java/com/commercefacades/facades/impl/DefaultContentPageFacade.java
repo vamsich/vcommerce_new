@@ -42,5 +42,11 @@ public class DefaultContentPageFacade implements ContentPageFacade
 		contentPageModel.setPageName(contentPage.getName());
 		contentPageService.saveModel(contentPageModel);
 	}
+
+	public ContentPageData getContentPage(String code) 
+	{
+		ContentPageModel contentPageModel=contentPageService.getContentPage(code);
+		return contentPageConverter.convert(contentPageModel);
+	}
 	
 }

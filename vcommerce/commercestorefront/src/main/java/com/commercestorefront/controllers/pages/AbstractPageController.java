@@ -1,11 +1,33 @@
 package com.commercestorefront.controllers.pages;
 
+import org.springframework.ui.Model;
 
-
+import com.commercefacades.data.ContentPageData;
+import com.commercefacades.facades.ContentPageFacade;
 
 public class AbstractPageController 
 {
 	public static final String REDIRECT= "redirect:";
+	
+	private ContentPageFacade contentPageFacade;
+
+	public ContentPageFacade getContentPageFacade() {
+		return contentPageFacade;
+	}
+
+	public void setContentPageFacade(ContentPageFacade contentPageFacade) {
+		this.contentPageFacade = contentPageFacade;
+	}
+	
+	public String getViewForPage(String code)
+	{
+		ContentPageData contentPage=getContentPageFacade().getContentPage(code);
+		if(contentPage!=null)
+		{
+			contentPage.getLabel();
+		}
+		return null;
+	}
 	/*
 	public static final String REDIRECT= "redirect:";
 
@@ -24,7 +46,6 @@ public class AbstractPageController
 
 	public String getViewForPage(Model model,String code)
 	{
-		ContentPageModel contentPage=getCmsSiteService().getDefaultPage(code);
 		
 		if(contentPage!=null)
 		{

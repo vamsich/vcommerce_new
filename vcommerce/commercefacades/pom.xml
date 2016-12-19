@@ -147,10 +147,5 @@
 			<artifactId>commercecontent</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>commercebase</groupId>
-			<artifactId>commercebase</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
   </dependencies>
 </project>
