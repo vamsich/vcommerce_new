@@ -1,7 +1,9 @@
 package com.commercefacades.facades.impl;
 
 import com.commercecontent.model.ContentPageModel;
+import com.commercecontent.model.PageTemplateModel;
 import com.commercecontent.service.ContentPageService;
+import com.commercecontent.service.PageTemplateService;
 import com.commercefacades.converters.Converters;
 import com.commercefacades.data.ContentPageData;
 import com.commercefacades.facades.ContentPageFacade;
@@ -10,6 +12,16 @@ public class DefaultContentPageFacade implements ContentPageFacade
 {
 	private ContentPageService contentPageService;
 	
+	private PageTemplateService pageTemplateService;
+	
+	public PageTemplateService getPageTemplateService() {
+		return pageTemplateService;
+	}
+
+	public void setPageTemplateService(PageTemplateService pageTemplateService) {
+		this.pageTemplateService = pageTemplateService;
+	}
+
 	public ContentPageService getContentPageService() {
 		return contentPageService;
 	}
@@ -37,9 +49,10 @@ public class DefaultContentPageFacade implements ContentPageFacade
 	{
 		ContentPageModel contentPageModel= new ContentPageModel();
 		contentPageModel.setCode(contentPage.getCode());
-		contentPageModel.setLabel(contentPage.getName());
 		contentPageModel.setName(contentPage.getName());
 		contentPageModel.setPageName(contentPage.getName());
+		PageTemplateModel pageTemplateModel=pageTemplateService.getTemplate(contentPage.getPageTemplate());
+		contentPageModel.setPageTemplate(pageTemplateModel);
 		contentPageService.saveModel(contentPageModel);
 	}
 

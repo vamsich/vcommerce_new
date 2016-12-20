@@ -11,6 +11,7 @@
  Page name<input type="text" name="pageName"/><br/>
  code<input type="text" name="code"/><br/>
  name<input type="text" name="name"/><br/>
+ pageTemplate<input type="text" name="pageTemplate"/><br/>
  <input type="submit" value="save"/>
  </form>
 </body>

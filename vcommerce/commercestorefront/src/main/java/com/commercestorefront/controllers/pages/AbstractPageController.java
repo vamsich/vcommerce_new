@@ -1,6 +1,7 @@
 package com.commercestorefront.controllers.pages;
 
-import org.springframework.ui.Model;
+import javax.annotation.Resource;
+
 
 import com.commercefacades.data.ContentPageData;
 import com.commercefacades.facades.ContentPageFacade;
@@ -9,6 +10,7 @@ public class AbstractPageController
 {
 	public static final String REDIRECT= "redirect:";
 	
+	@Resource(name="contentPageFacade")
 	private ContentPageFacade contentPageFacade;
 
 	public ContentPageFacade getContentPageFacade() {
@@ -24,7 +26,7 @@ public class AbstractPageController
 		ContentPageData contentPage=getContentPageFacade().getContentPage(code);
 		if(contentPage!=null)
 		{
-			contentPage.getLabel();
+			return contentPage.getLabel();
 		}
 		return null;
 	}

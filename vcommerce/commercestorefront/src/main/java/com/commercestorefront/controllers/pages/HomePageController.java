@@ -16,6 +16,6 @@ public class HomePageController extends AbstractPageController
 	@RequestMapping(method= RequestMethod.GET)
 	public String getHomePage(Model model,HttpServletRequest request, HttpServletResponse response)
 	{
-		return getViewForPage("home");
+		return getViewForPage("homepage");
 	}
 }

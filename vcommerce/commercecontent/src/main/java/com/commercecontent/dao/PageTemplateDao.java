@@ -11,4 +11,5 @@ public interface PageTemplateDao
 	void updateModel(PageTemplateModel model);
 	void deleteModel(PageTemplateModel model);
 	List<PageTemplateModel> getModels();
+	PageTemplateModel getPageTemplate(String code);
 }

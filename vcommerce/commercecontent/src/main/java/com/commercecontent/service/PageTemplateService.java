@@ -11,4 +11,5 @@ public interface PageTemplateService
 	void updateModel(PageTemplateModel model);
 	void deleteModel(PageTemplateModel model);
 	List<PageTemplateModel> getModels();
+	PageTemplateModel getTemplate(String code);
 }

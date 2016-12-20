@@ -14,7 +14,7 @@ import com.commercestorefront.controllers.pages.AbstractPageController;
  */
 @Controller
 @RequestMapping("/delivey")
-public class DevliveryAddressStepController extends AbstractPageController 
+public class DevliveryAddressStepController /*extends AbstractPageController*/ 
 {
 	
 }

@@ -57,4 +57,10 @@ public class DefaultPageTemplateService implements PageTemplateService
 		return pageTemplateDao.getModels();
 	}
 
+	public PageTemplateModel getTemplate(String code) 
+	{
+		// TODO Auto-generated method stub
+		return pageTemplateDao.getPageTemplate(code);
+	}
+
 }

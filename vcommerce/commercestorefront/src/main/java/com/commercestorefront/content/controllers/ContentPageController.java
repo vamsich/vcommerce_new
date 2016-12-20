@@ -40,6 +40,7 @@ public class ContentPageController
 		contentPageData.setCode(contentPageForm.getCode());
 		contentPageData.setName(contentPageForm.getName());
 		contentPageData.setPageName(contentPageForm.getPageName());
+		contentPageData.setPageTemplate(contentPageForm.getPageTemplate());
 		contentPageFacade.save(contentPageData);
 		return "success";
 	}

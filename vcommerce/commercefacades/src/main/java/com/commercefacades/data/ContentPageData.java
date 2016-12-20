@@ -5,8 +5,8 @@ public class ContentPageData
 	private String name;
 	private String code;
 	private String pageName;
+	private String pageTemplate;
 	private String label;
-	
 	public String getName() {
 		return name;
 	}
@@ -25,15 +25,18 @@ public class ContentPageData
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
 	}
-	
-	public void setLabel(String label)
-	{
-		this.label= label;
+	public String getPageTemplate() {
+		return pageTemplate;
+	}
+	public void setPageTemplate(String pageTemplate) {
+		this.pageTemplate = pageTemplate;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
 	}
 	
-	public String getLabel()
-	{
-		return this.label;
-	}
 }
 

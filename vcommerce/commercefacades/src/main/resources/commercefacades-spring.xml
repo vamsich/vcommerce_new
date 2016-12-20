@@ -26,6 +26,7 @@
 	<bean id="contentPageFacade" class="com.commercefacades.facades.impl.DefaultContentPageFacade">
 		<property name="contentPageService" ref="contentPageService"/>
 		<property name="contentPageConverter" ref="contentPageConverter"/>
+		<property name="pageTemplateService" ref="pageTemplateService"/>
 	</bean>
 	
 	<bean id="contentSlotFacade" class="com.commercefacades.facades.impl.DefaultContentSlotFacade">

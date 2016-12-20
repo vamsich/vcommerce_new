@@ -8,9 +8,9 @@
 </head>
 <body>
 <form action="template/save" method="POST">
- code<input type="text" name="pageName"/><br/>
- page name<input type="text" name="code"/><br/>
- front page name<input type="text" name="name"/><br/>
+ code<input type="text" name="code"/><br/>
+ page name<input type="text" name="name"/><br/>
+ front page name<input type="text" name="frontPageName"/><br/>
  <input type="submit" value="save"/>
  </form>
 </body>

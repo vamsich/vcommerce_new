@@ -1,8 +1,10 @@
 package com.commercecontent.dao.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.util.CollectionUtils;
 
 import com.commercecontent.dao.PageTemplateDao;
 import com.commercecontent.model.PageTemplateModel;
@@ -44,6 +46,17 @@ public class DefaultPageTemplateDao implements PageTemplateDao
 	public List<PageTemplateModel> getModels() 
 	{
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public PageTemplateModel getPageTemplate(String code) 
+	{
+		List<PageTemplateModel> templates=session.getCurrentSession().createQuery("From PageTemplateModel where code=:code").setParameter("code", code).list();
+		if(CollectionUtils.isEmpty(templates))
+		{
+			return null;
+		}
+		return templates.get(0);
 	}
 
 }

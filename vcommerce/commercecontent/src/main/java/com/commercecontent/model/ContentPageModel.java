@@ -37,9 +37,6 @@ public class ContentPageModel
 	private String pageCode;
 	
 	@Column
-	private String label;
-	
-	@Column
 	private boolean isDefault;
 	
 	@OneToMany(fetch=FetchType.LAZY, targetEntity= SlotModel.class,cascade= CascadeType.ALL)
@@ -64,15 +61,6 @@ public class ContentPageModel
 		this.isDefault = isDefault;
 	}
 	
-	
-	public String getLabel()
-	{
-		return label;
-	}
-	public void setLabel(String label)
-	{
-		this.label = label;
-	}
 	public String getPageCode()
 	{
 		return pageCode;

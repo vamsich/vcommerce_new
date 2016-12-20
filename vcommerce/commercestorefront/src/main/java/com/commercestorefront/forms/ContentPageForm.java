@@ -5,6 +5,14 @@ public class ContentPageForm
 	private String name;
 	private String code;
 	private String pageName;
+	private String pageTemplate;
+	
+	public String getPageTemplate() {
+		return pageTemplate;
+	}
+	public void setPageTemplate(String pageTemplate) {
+		this.pageTemplate = pageTemplate;
+	}
 	public String getName() {
 		return name;
 	}
