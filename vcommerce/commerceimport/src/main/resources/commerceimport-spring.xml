@@ -45,5 +45,7 @@
 		<property name="dataSource" ref="importDataSource" />
     </bean>
  
-    <tx:annotation-driven transaction-manager="importTransactionManager"/>		
+    <tx:annotation-driven transaction-manager="importTransactionManager"/>
+    
+    <bean id="applicationContextProvider" class="com.commerceimport.context.ApplicationContextProvider"/>		
 </beans>

@@ -49,12 +49,12 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 		PageTemplateModel pageTemplateModel = new PageTemplateModel();
 		if(fieldSet.readString(0).contains("slots"))
 		{
-			pageTemplateModel=getPageTemplateService().getTemplate(fieldSet.readString(1));
+			pageTemplateModel=getPageTemplateService().getTemplate(fieldSet.readString(2));
 			
 			Set<SlotModel> slots=pageTemplateModel.getAvailableSlots();
 			if(!CollectionUtils.isEmpty(slots))
 			{
-				List<String> slotsList= new ArrayList<String>(Arrays.asList(fieldSet.readString(2).split(",")));
+				List<String> slotsList= new ArrayList<String>(Arrays.asList(fieldSet.readString(3).split(",")));
 				for(String slotCode:slotsList)
 				{
 					SlotModel slotModel=contentSlotService.getSlotForCode(slotCode);
@@ -68,7 +68,7 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 			else
 			{
 				
-				List<String> slotsList= new ArrayList<String>(Arrays.asList(fieldSet.readString(2).split(",")));
+				List<String> slotsList= new ArrayList<String>(Arrays.asList(fieldSet.readString(3).split(",")));
 				Set<SlotModel> newSlots= new HashSet<SlotModel>();
 				for(String slotCode:slotsList)
 				{
@@ -83,9 +83,9 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 		}
 		else
 		{
-			pageTemplateModel.setCode(fieldSet.readString(0));
-			pageTemplateModel.setName(fieldSet.readString(1));
-			pageTemplateModel.setFrontPageName(fieldSet.readString(2));
+			pageTemplateModel.setCode(fieldSet.readString(3));
+			pageTemplateModel.setName(fieldSet.readString(4));
+			pageTemplateModel.setFrontPageName(fieldSet.readString(5));
 		}
 
 		return pageTemplateModel;

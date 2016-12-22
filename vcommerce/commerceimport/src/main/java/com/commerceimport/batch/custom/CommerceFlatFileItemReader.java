@@ -15,14 +15,19 @@ import org.springframework.batch.item.file.LineCallbackHandler;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.NonTransientFlatFileException;
 import org.springframework.batch.item.file.ResourceAwareItemReaderItemStream;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.separator.RecordSeparatorPolicy;
 import org.springframework.batch.item.file.separator.SimpleRecordSeparatorPolicy;
 import org.springframework.batch.item.support.AbstractItemCountingItemStreamItemReader;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
+
+import com.commerceimport.context.ApplicationContextProvider;
 
 public class CommerceFlatFileItemReader<T> extends AbstractItemCountingItemStreamItemReader<T>
 implements ResourceAwareItemReaderItemStream<T>, InitializingBean 
@@ -45,7 +50,7 @@ implements ResourceAwareItemReaderItemStream<T>, InitializingBean
 	private int linesToSkip = 0;
 	private LineCallbackHandler skippedLinesCallback;
 	private boolean strict = true;
-
+	
 	private BufferedReaderFactory bufferedReaderFactory = new DefaultBufferedReaderFactory();
 
 	public CommerceFlatFileItemReader() {
@@ -89,6 +94,7 @@ implements ResourceAwareItemReaderItemStream<T>, InitializingBean
 		this.recordSeparatorPolicy = recordSeparatorPolicy;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected T doRead() throws Exception {
 		if (this.noInput) {
 			return null;
@@ -100,6 +106,15 @@ implements ResourceAwareItemReaderItemStream<T>, InitializingBean
 			return null;
 		}
 		try {
+			if(line.contains("!"))
+			{
+				ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
+				String[] header=line.split(";");
+				FieldSetMapper fieldSetMapper=(FieldSetMapper) ctx.getBean(header[1]);
+				DefaultLineMapper defaultLineMapper=(DefaultLineMapper) this.lineMapper;
+				defaultLineMapper.setFieldSetMapper(fieldSetMapper);
+				
+			}
 			return this.lineMapper.mapLine(line, this.lineCount);
 		} catch (Exception ex) {
 			throw new FlatFileParseException("Parsing error at line: " + this.lineCount + " in resource=["

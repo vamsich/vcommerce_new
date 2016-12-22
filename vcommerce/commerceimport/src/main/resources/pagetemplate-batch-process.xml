@@ -25,15 +25,13 @@
  
             <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
  
-                <property name="fieldSetMapper">
-                    <!-- Mapper which maps each individual items in a record to properties in POJO -->
-                    <bean class="com.commerceimport.content.PageTemplateFieldSetMapper" />
-                </property>
+ 				<!-- Mapper which maps each individual items in a record to properties in POJO -->
+                <property name="fieldSetMapper" ref="pageTemplateFieldSetMapper"/>
  
                 <property name="lineTokenizer">
                     <!-- A tokenizer class to be used when items in input record are separated by specific characters -->
                     <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
-                        <property name="delimiter" value="," />
+                        <property name="delimiter" value=";" />
                     </bean>
                 </property>
  
@@ -42,7 +40,12 @@
         </property>
  
     </bean>
- 
+ 	
+ 	<bean id="pageTemplateFieldSetMapper" class="com.commerceimport.content.PageTemplateFieldSetMapper">
+ 		<property name="pageTemplateService" ref="pageTemplateService"/>
+ 		<property name="contentSlotService" ref="contentSlotService"/>
+ 	</bean>
+ 	
  	<bean class="org.springframework.orm.hibernate3.HibernateTemplate" id="hibernateTemplate" >
     	<property name="sessionFactory" ref="importSessionFactory" />
 	</bean>
