@@ -12,4 +12,5 @@ public interface ContentSlotService
 	void deleteModel(SlotModel model);
 	void updateModel(SlotModel model);
 	List<SlotModel> getModels();
+	SlotModel getSlotForCode(String code);
 }

@@ -47,4 +47,9 @@ public class DefaultContentSlotService implements ContentSlotService
 		return contentSlotDao.getModels();
 	}
 
+	public SlotModel getSlotForCode(String code) 
+	{
+		return contentSlotDao.getSlotForCode(code);
+	}
+
 }
