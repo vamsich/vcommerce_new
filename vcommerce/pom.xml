@@ -16,11 +16,12 @@
 
 
   <modules>
+  	<module>commercebase</module>
   	<module>commercecore</module>
   	<module>commercecontent</module>
   	<module>commercefacades</module>
   	<module>commercestorefront</module>
-    <module>commercebase</module>
     <module>commerceimport</module>
+    <module>promotionmanager</module>
   </modules>
 </project>

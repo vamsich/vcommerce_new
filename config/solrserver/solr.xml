@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<solr persistent="true">
+  <cores adminPath="/admin/cores"
+         defaultCoreName="product"
+         host="${host:}"
+         hostPort="${jetty.port:}"
+         hostContext="${hostContext:}"
+         zkClientTimeout="${zkClientTimeout:15000}">
+    <core name="product" instanceDir="product" />
+  </cores>
+</solr>

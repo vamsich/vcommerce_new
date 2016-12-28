@@ -19,28 +19,17 @@
     </bean>
  
     <!-- ItemReader reads a complete line one by one from input file -->
-    <bean id="flatFileItemReader" class="com.commerceimport.batch.custom.CommerceFlatFileItemReader"  scope="step">
- 
-        <property name="lineMapper">
- 
-            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
- 
- 				<!-- Mapper which maps each individual items in a record to properties in POJO -->
-                <property name="fieldSetMapper" ref="pageTemplateFieldSetMapper"/>
- 
-                <property name="lineTokenizer">
-                    <!-- A tokenizer class to be used when items in input record are separated by specific characters -->
-                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
-                        <property name="delimiter" value=";" />
-                    </bean>
-                </property>
- 
-            </bean>
- 
-        </property>
- 
+    <bean id="flatFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader"  scope="step">
+        <property name="lineMapper" ref="template"/>
     </bean>
  	
+ 	<bean id="template" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+ 		<property name="fieldSetMapper" ref="pageTemplateFieldSetMapper"/>
+ 		<property name="lineTokenizer" ref="delimiterBean"/>
+ 	</bean>
+ 	<bean id="delimiterBean" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+        <property name="delimiter" value=";" />
+    </bean>
  	<bean id="pageTemplateFieldSetMapper" class="com.commerceimport.content.PageTemplateFieldSetMapper">
  		<property name="pageTemplateService" ref="pageTemplateService"/>
  		<property name="contentSlotService" ref="contentSlotService"/>

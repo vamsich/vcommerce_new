@@ -1,1 +1,1 @@
-!pageTemplate;pageTemplateFieldSetMapper;sample;sample;sample
+!pageTemplateSlots;pageTemplate;sample;sample1,sample2,ample3

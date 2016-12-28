@@ -46,13 +46,17 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 
 	public PageTemplateModel mapFieldSet(FieldSet fieldSet) throws BindException 
 	{
-		PageTemplateModel pageTemplateModel = new PageTemplateModel();
-		if(fieldSet.readString(0).contains("slots"))
+		if(fieldSet.readString(0).contains("Slots"))
 		{
+			PageTemplateModel pageTemplateModel = new PageTemplateModel();
 			pageTemplateModel=getPageTemplateService().getTemplate(fieldSet.readString(2));
+			List<SlotModel> slots=new ArrayList<SlotModel>();
+			if(null != pageTemplateModel)
+			{
+				slots=contentSlotService.getSlotsForTemplate(pageTemplateModel.getId());
+			}
 			
-			Set<SlotModel> slots=pageTemplateModel.getAvailableSlots();
-			if(!CollectionUtils.isEmpty(slots))
+			if(null!= slots && !CollectionUtils.isEmpty(slots))
 			{
 				List<String> slotsList= new ArrayList<String>(Arrays.asList(fieldSet.readString(3).split(",")));
 				for(String slotCode:slotsList)
@@ -63,7 +67,8 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 						slots.add(slotModel);
 					}
 				}
-				pageTemplateModel.setAvailableSlots(slots);
+				Set<SlotModel> listOfSlots= new HashSet<SlotModel>(slots);
+				pageTemplateModel.setAvailableSlots(listOfSlots);
 			}
 			else
 			{
@@ -80,15 +85,17 @@ public class PageTemplateFieldSetMapper implements FieldSetMapper<PageTemplateMo
 				}
 				pageTemplateModel.setAvailableSlots(newSlots);
 			}
+			return pageTemplateModel;
 		}
 		else
 		{
-			pageTemplateModel.setCode(fieldSet.readString(3));
-			pageTemplateModel.setName(fieldSet.readString(4));
-			pageTemplateModel.setFrontPageName(fieldSet.readString(5));
+			PageTemplateModel pageTemplateModel = new PageTemplateModel();
+			pageTemplateModel.setCode(fieldSet.readString(2));
+			pageTemplateModel.setName(fieldSet.readString(3));
+			pageTemplateModel.setFrontPageName(fieldSet.readString(4));
+			return pageTemplateModel;
 		}
 
-		return pageTemplateModel;
 	}
 
 }

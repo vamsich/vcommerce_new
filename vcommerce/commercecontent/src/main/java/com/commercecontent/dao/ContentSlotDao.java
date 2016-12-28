@@ -11,4 +11,6 @@ public interface ContentSlotDao
 	void deleteModel(SlotModel model);
 	void updateModel(SlotModel model);
 	List<SlotModel> getModels();
+	SlotModel getSlotForCode(String code);
+	List<SlotModel> getSlotsForTemplate(int id);
 }

@@ -94,27 +94,13 @@ implements ResourceAwareItemReaderItemStream<T>, InitializingBean
 		this.recordSeparatorPolicy = recordSeparatorPolicy;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected T doRead() throws Exception {
 		if (this.noInput) {
 			return null;
 		}
 
 		String line = readLine();
-
-		if (line == null | line.startsWith("INSERT")) {
-			return null;
-		}
 		try {
-			if(line.contains("!"))
-			{
-				ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
-				String[] header=line.split(";");
-				FieldSetMapper fieldSetMapper=(FieldSetMapper) ctx.getBean(header[1]);
-				DefaultLineMapper defaultLineMapper=(DefaultLineMapper) this.lineMapper;
-				defaultLineMapper.setFieldSetMapper(fieldSetMapper);
-				
-			}
 			return this.lineMapper.mapLine(line, this.lineCount);
 		} catch (Exception ex) {
 			throw new FlatFileParseException("Parsing error at line: " + this.lineCount + " in resource=["

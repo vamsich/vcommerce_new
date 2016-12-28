@@ -1,8 +1,10 @@
 package com.commercecontent.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.commercecontent.dao.ContentSlotDao;
 import com.commercecontent.model.SlotModel;
@@ -50,6 +52,16 @@ public class DefaultContentSlotService implements ContentSlotService
 	public SlotModel getSlotForCode(String code) 
 	{
 		return contentSlotDao.getSlotForCode(code);
+	}
+
+	public List<SlotModel> getSlotsForTemplate(int id) 
+	{
+		List<SlotModel> slots=contentSlotDao.getSlotsForTemplate(id);
+		if(CollectionUtils.isEmpty(slots))
+		{
+			return Collections.emptyList();
+		}
+		return slots;
 	}
 
 }
