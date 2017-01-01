@@ -2,29 +2,23 @@ package com.commercefacades.facades.impl;
 
 import com.commercecore.model.ProductModel;
 import com.commercecore.service.ProductService;
+import com.commercefacades.converters.Converters;
 import com.commercefacades.data.ProductData;
 import com.commercefacades.facades.ProductFacade;
 
 public class DefaultProductFacade implements ProductFacade
 {
-	/*private Converters<ProductModel, ProductData> productConverter;*/
+	private Converters<ProductModel, ProductData> productConverter;
 	private ProductService productService;
 	
-/*	public Converters<ProductModel, ProductData> getProductConverter() {
+	public Converters<ProductModel, ProductData> getProductConverter() {
 		return productConverter;
 	}
 
 
 	public void setProductConverter(Converters<ProductModel, ProductData> productConverter) {
 		this.productConverter = productConverter;
-	}*/
-
-	/*public ProductData getProduct(int id) 
-	{
-		ProductModel product=(ProductModel) productService.getModel(id);
-		ProductData productData=productConverter.convert(product);
-		return productData;
-	}*/
+	}
 
 
 	public void saveProduct(ProductData productData) 
@@ -36,6 +30,11 @@ public class DefaultProductFacade implements ProductFacade
 		productService.saveModel(product);
 	}
 
+	public ProductData getProduct(int id) 
+	{
+		return productConverter.convert(productService.getModel(id));
+	}
+	
 	public ProductService getProductService() {
 		return productService;
 	}
@@ -44,8 +43,4 @@ public class DefaultProductFacade implements ProductFacade
 		this.productService = productService;
 	}
 
-	public ProductData getProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -39,6 +39,11 @@
 		<property name="pageTemplateConverter" ref="pageTemplateConverter"/>
 	</bean>
 	
+	<bean id="categoryFacade" class="com.commercefacades.facades.impl.DefaultCategoryFacade">
+		<property name="categoryService" ref="categoryService"/>
+		<property name="categoryConverter" ref="categoryConverter"/>
+	</bean>
+	
 	<bean id="abstractConverter" class="com.commercefacades.converters.Converters"/>
 	
 	<bean id="customerConverter" parent="abstractConverter">
@@ -86,11 +91,21 @@
 		</property>
 	</bean>
 	
+	<bean id="categoryConverter" parent="abstractConverter">
+		<property name="target" value="com.commercebase.content.data.CategoryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="categoryPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="customerPopulator" class="com.commercefacades.converters.impl.CustomerPopulator"/>
 	<bean id="baseStorePopulator" class="com.commercefacades.converters.impl.BaseStorePopulator"/>
 	<bean id="contentPagePopulator" class="com.commercefacades.converters.impl.ContentPagePopulator"/>
 	<bean id="contentSlotPopulator" class="com.commercefacades.converters.impl.ContentSlotPopulator"/>
 	<bean id="pageTemplatePopulator" class="com.commercefacades.converters.impl.ContentSlotPopulator"/>
+	<bean id="categoryPopulator" class="com.commercefacades.converters.impl.CategoryPopulator"/>
 	
 	<import resource="classpath*:/commercecore-spring.xml" />
 </beans>

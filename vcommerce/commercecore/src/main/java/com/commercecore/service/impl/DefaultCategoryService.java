@@ -3,12 +3,13 @@ package com.commercecore.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.commercecore.dao.CategoryDao;
 import com.commercebase.core.models.CategoryModel;
 import com.commercecore.service.CategoryService;
 
-
+@Transactional
 public class DefaultCategoryService implements CategoryService
 {
 	private static final Logger LOG = Logger.getLogger(DefaultCategoryService.class);

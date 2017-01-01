@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.commercebase.core.models.CategoryModel;
 
-
 public interface CategoryDao
 {
 	Object getModel(int id);
